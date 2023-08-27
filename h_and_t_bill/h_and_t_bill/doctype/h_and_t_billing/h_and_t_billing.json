@@ -1,0 +1,297 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format: H and T Billing {from_date} to {to_date} -{#####}",
+ "creation": "2023-07-27 10:41:51.314472",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "season",
+  "from_date",
+  "column_break_wyjkv",
+  "branch",
+  "to_date",
+  "column_break_3wqnq",
+  "village",
+  "column_break_plthx",
+  "state",
+  "column_break_9rf55",
+  "other_deduction",
+  "includes_sales_invoice_deduction",
+  "includes_loan_installment",
+  "includes_loan_interest",
+  "section_break_apo7m",
+  "show_list",
+  "column_break_4qpbs",
+  "select_all",
+  "column_break_i8otr",
+  "column_break_gcgw9",
+  "column_break_ounss",
+  "column_break_uljsl",
+  "column_break_q2afk",
+  "column_break_ckp06",
+  "column_break_wc6we",
+  "section_break_lgqma",
+  "h_and_t_table",
+  "section_break_b9fs3",
+  "do_billing",
+  "section_break_tsbtf",
+  "child_h_and_t_invisible",
+  "section_break_4vr7z",
+  "calculation_table",
+  "section_break_m3fha",
+  "new_total_weight",
+  "column_break_knkwk",
+  "net_total_collection_amountrs",
+  "column_break_zeyiu",
+  "net_total_deductionrs",
+  "column_break_6zxew",
+  "net_total_payable_amountrs",
+  "amended_from",
+  "today"
+ ],
+ "fields": [
+  {
+   "fieldname": "season",
+   "fieldtype": "Link",
+   "label": "Season",
+   "options": "Season"
+  },
+  {
+   "fieldname": "from_date",
+   "fieldtype": "Date",
+   "label": " From Date"
+  },
+  {
+   "fieldname": "column_break_wyjkv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch"
+  },
+  {
+   "fieldname": "to_date",
+   "fieldtype": "Date",
+   "label": "To Date"
+  },
+  {
+   "fieldname": "section_break_apo7m",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "show_list",
+   "fieldtype": "Button",
+   "label": "Show List"
+  },
+  {
+   "fieldname": "column_break_4qpbs",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "select_all",
+   "fieldtype": "Button",
+   "label": "Select All"
+  },
+  {
+   "fieldname": "column_break_i8otr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_gcgw9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ounss",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_uljsl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_q2afk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ckp06",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_wc6we",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_lgqma",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "h_and_t_table",
+   "fieldtype": "Table",
+   "label": "H & T Table",
+   "options": "Child H and T Data"
+  },
+  {
+   "fieldname": "section_break_b9fs3",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "do_billing",
+   "fieldtype": "Button",
+   "label": "Do Billing"
+  },
+  {
+   "fieldname": "section_break_tsbtf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "child_h_and_t_invisible",
+   "fieldtype": "Table",
+   "label": "Child H and T invisible",
+   "options": "Child H and T invisible"
+  },
+  {
+   "fieldname": "section_break_4vr7z",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "calculation_table",
+   "fieldtype": "Table",
+   "label": "Calculation Table",
+   "options": "Child H and T Calculation"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "H and T Billing",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "village",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Village"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "State"
+  },
+  {
+   "fieldname": "column_break_3wqnq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_plthx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_9rf55",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "other_deduction",
+   "fieldtype": "Check",
+   "label": "Other Deduction"
+  },
+  {
+   "default": "1",
+   "fieldname": "includes_sales_invoice_deduction",
+   "fieldtype": "Check",
+   "label": " Includes Sales Invoice Deduction"
+  },
+  {
+   "default": "1",
+   "fieldname": "includes_loan_installment",
+   "fieldtype": "Check",
+   "label": " Includes Loan Installment"
+  },
+  {
+   "default": "1",
+   "fieldname": "includes_loan_interest",
+   "fieldtype": "Check",
+   "label": " Includes Loan Interest"
+  },
+  {
+   "fieldname": "section_break_m3fha",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "new_total_weight",
+   "fieldtype": "Float",
+   "label": "Net Total Weight"
+  },
+  {
+   "fieldname": "column_break_knkwk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_total_collection_amountrs",
+   "fieldtype": "Currency",
+   "label": "Net Total Collection Amount(Rs)"
+  },
+  {
+   "fieldname": "column_break_zeyiu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_total_deductionrs",
+   "fieldtype": "Currency",
+   "label": "Net Total Deduction(Rs)"
+  },
+  {
+   "fieldname": "column_break_6zxew",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_total_payable_amountrs",
+   "fieldtype": "Currency",
+   "label": "Net Total Payable Amount(Rs)"
+  },
+  {
+   "fieldname": "today",
+   "fieldtype": "Date",
+   "label": "Today Date",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-08-11 15:12:18.145541",
+ "modified_by": "Administrator",
+ "module": "H And T Bill",
+ "name": "H and T Billing",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

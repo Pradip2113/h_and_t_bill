@@ -1,0 +1,96 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{season}-{vender_type}-{vehicle_type}",
+ "creation": "2023-08-03 10:25:41.881121",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "season",
+  "vehicle_type",
+  "column_break_hmzzf",
+  "branch",
+  "per_km_rate",
+  "column_break_5fj0z",
+  "vender_type",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "season",
+   "fieldtype": "Link",
+   "label": "Season",
+   "options": "Season"
+  },
+  {
+   "fieldname": "vehicle_type",
+   "fieldtype": "Link",
+   "label": "Vehicle Type",
+   "options": "Vehicle Type"
+  },
+  {
+   "fieldname": "column_break_hmzzf",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "branch",
+   "fieldtype": "Link",
+   "label": "Branch",
+   "options": "Branch"
+  },
+  {
+   "fieldname": "per_km_rate",
+   "fieldtype": "Float",
+   "label": "Per Km Rate"
+  },
+  {
+   "fieldname": "column_break_5fj0z",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Harvester",
+   "fieldname": "vender_type",
+   "fieldtype": "Data",
+   "label": "Vender Type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Harvester Rate Chart",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-08-04 11:03:28.528904",
+ "modified_by": "Administrator",
+ "module": "H And T Bill",
+ "name": "Harvester Rate Chart",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

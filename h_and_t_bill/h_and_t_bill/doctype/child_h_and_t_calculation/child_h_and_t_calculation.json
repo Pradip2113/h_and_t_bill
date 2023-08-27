@@ -1,0 +1,128 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-07-27 11:03:46.484402",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "contract_id",
+  "vender_id",
+  "vender_name",
+  "type",
+  "total_weight",
+  "total",
+  "deduction",
+  "payable_amt",
+  "total_transporter_deduction",
+  "sales_invoice_deduction",
+  "other_deductions",
+  "lone_deduction",
+  "loan_interest_deduction",
+  "all_deduction_information",
+  "payment_status"
+ ],
+ "fields": [
+  {
+   "fieldname": "vender_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vender Name"
+  },
+  {
+   "fieldname": "vender_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vender Id"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Type "
+  },
+  {
+   "fieldname": "contract_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Contract Id"
+  },
+  {
+   "default": "0",
+   "fieldname": "total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Amt"
+  },
+  {
+   "fieldname": "deduction",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Deduction Amt"
+  },
+  {
+   "fieldname": "payable_amt",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Payable Amt"
+  },
+  {
+   "fieldname": "total_weight",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Weight"
+  },
+  {
+   "fieldname": "sales_invoice_deduction",
+   "fieldtype": "Currency",
+   "label": "Sales Invoice Deduction"
+  },
+  {
+   "fieldname": "other_deductions",
+   "fieldtype": "Currency",
+   "label": "Other Deduction"
+  },
+  {
+   "fieldname": "lone_deduction",
+   "fieldtype": "Currency",
+   "label": "Loan Deduction"
+  },
+  {
+   "fieldname": "loan_interest_deduction",
+   "fieldtype": "Currency",
+   "label": "Loan Interest Deduction"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_transporter_deduction",
+   "fieldtype": "Currency",
+   "label": "Total Transporter Deduction"
+  },
+  {
+   "fieldname": "all_deduction_information",
+   "fieldtype": "Small Text",
+   "label": "All Deduction Information"
+  },
+  {
+   "default": "0",
+   "fieldname": "payment_status",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Payment Status",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2023-08-16 14:22:59.838564",
+ "modified_by": "Administrator",
+ "module": "H And T Bill",
+ "name": "Child H and T Calculation",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

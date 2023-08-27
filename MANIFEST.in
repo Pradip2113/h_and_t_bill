@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include h_and_t_bill *.css
+recursive-include h_and_t_bill *.csv
+recursive-include h_and_t_bill *.html
+recursive-include h_and_t_bill *.ico
+recursive-include h_and_t_bill *.js
+recursive-include h_and_t_bill *.json
+recursive-include h_and_t_bill *.md
+recursive-include h_and_t_bill *.png
+recursive-include h_and_t_bill *.py
+recursive-include h_and_t_bill *.svg
+recursive-include h_and_t_bill *.txt
+recursive-exclude h_and_t_bill *.pyc
