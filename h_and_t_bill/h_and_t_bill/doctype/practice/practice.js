@@ -63,7 +63,17 @@ frappe.ui.form.on('Practice', {
 // frappe.ui.form.on('Practice', {
 // 	scan: function(frm) {
 // 		frm.call({
-// 			method:'check_developer_mode',//function name defined in python
+// 			method:'validate',//function name defined in python
+// 			doc: frm.doc, //current document
+// 		});
+
+// 	}
+// });
+
+// frappe.ui.form.on('Practice', {
+// 	scan: function(frm) {
+// 		frm.call({
+// 			method:'get_data',//function name defined in python
 // 			doc: frm.doc, //current document
 // 		});
 

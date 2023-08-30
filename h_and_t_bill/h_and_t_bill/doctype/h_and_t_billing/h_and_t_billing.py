@@ -16,20 +16,20 @@ class HandTBilling(Document):
 		trans_list=[]
 		vendor_list=[]
 		doc = frappe.db.get_list("Cane Weight",
-                                                filters={"docstatus": 1,"date": ["between", [self.from_date, self.to_date]],"season" : self.season ,"branch" : self.branch,"h_and_t_billing_status":False },
+                                                filters={"docstatus": 1,"date": ["between", [self.from_date, self.to_date]],"season" : self.season ,"branch" : self.branch,"h_and_t_billing_status":False},
                                                 fields=["harvester_code","transporter_code","harvester_name","transporter_name"])
 		for d in doc:
-			if(d.transporter_code not in trans_list):
-				trans_list.append(d.transporter_code)
-				vendor_list.append({"vender_name":d.transporter_name,
-						"vender_id":d.transporter_code,
-						"type":"Transporter"})
+				if(d.transporter_code not in trans_list):
+					trans_list.append(d.transporter_code)
+					vendor_list.append({"vender_name":d.transporter_name,
+							"vender_id":d.transporter_code,
+							"type":"Transporter"})
 		for d in doc:
-			if(d.harvester_code not in har_list):
-				har_list.append(str(d.harvester_code))
-				vendor_list.append({"vender_name":d.harvester_name,
-						"vender_id":d.harvester_code,
-						"type":"Harvester"}) 
+				if(d.harvester_code not in har_list):
+					har_list.append(str(d.harvester_code))
+					vendor_list.append({"vender_name":d.harvester_name,
+							"vender_id":d.harvester_code,
+							"type":"Harvester"}) 
 		for index in range(len(vendor_list)):
 			self.append(
 					"h_and_t_table",
@@ -57,7 +57,7 @@ class HandTBilling(Document):
 		for vender in self.get("h_and_t_table"):
 			if(vender.check):
 				doc = frappe.db.get_list("Cane Weight",
-                                                filters={"date": ["between", [self.from_date, self.to_date]],"season" : self.season ,"branch" : self.branch },
+                                                filters={"docstatus": 1,"date": ["between", [self.from_date, self.to_date]],"season" : self.season ,"branch" : self.branch },
                                               fields=["harvester_code","transporter_code","harvester_name","transporter_name","contract_id","distance","actual_weight","vehicle_type"],)
 				for d in doc:
 					if(str(vender.vender_id)==str(d.harvester_code) and str(vender.type)==str("Harvester")):
@@ -296,16 +296,16 @@ class HandTBilling(Document):
 		# 		parsed_list = ast.literal_eval(formatted_input)
 		# 		list_data_lo=eval(str(parsed_list[1]))
 		# 		frappe.msgprint(str(list_data_lo))
-		for s in self.get("calculation_table"):
-					list_data_lo =[]
-					formatted_input = re.sub(r'\]\[', '],[', s.all_deduction_information)
-					formatted_input = '[' + formatted_input + ']'
-					parsed_list = ast.literal_eval(formatted_input)
-					list_data_lo =parsed_list
-					if(list_data_lo):
-						frappe.msgprint(str(list_data_lo[0]))
-					else:
-						pass
+		# for s in self.get("calculation_table"):
+		# 			list_data_lo =[]
+		# 			formatted_input = re.sub(r'\]\[', '],[', s.all_deduction_information)
+		# 			formatted_input = '[' + formatted_input + ']'
+		# 			parsed_list = ast.literal_eval(formatted_input)
+		# 			list_data_lo =parsed_list
+		# 			if(list_data_lo):
+		# 				frappe.msgprint(str(list_data_lo[0]))
+		# 			else:
+		# 				pass
 					
 					
 	#To get Net Deduction and collection
@@ -334,28 +334,30 @@ class HandTBilling(Document):
 			doc=frappe.db.get_list("Transporter Rate Chart",
 													filters={"season" : self.season ,"branch" : self.branch, "vehicle_type":vehicle_type},
 												fields=["name","per_km_rate"])
-			rate_per_km=doc[0].get("per_km_rate")
-			chart_table = frappe.get_all("Child Rate Chart",filters={"parent":doc[0].get("name")},fields=["distance","rate"])
-			for rows in chart_table:
-				if(str(rows["distance"])==str(int(distance))):
-					count=False
-					return rows.rate 
-				else:
-					dict1[int(rows.distance)]=float(rows.rate)
-			if(count):	
-				distance_rate=0
-				extra_km=0
-				extra_charge=0
-				large_km=max(dict1)
-				extra_km=distance-large_km
-				extra_charge=extra_km*rate_per_km
-				distance_rate=dict1[large_km]+extra_charge
-				return distance_rate
+			for i in doc:
+				rate_per_km=i.get("per_km_rate")
+				chart_table = frappe.get_all("Child Rate Chart",filters={"parent":i.name},fields=["distance","rate"])
+				for rows in chart_table:
+					if(str(rows["distance"])==str(int(distance))):
+						count=False
+						return rows.rate 
+					else:
+						dict1[int(rows.distance)]=float(rows.rate)
+				if(count):	
+					distance_rate=0
+					extra_km=0
+					extra_charge=0
+					large_km=max(dict1)
+					extra_km=distance-large_km
+					extra_charge=extra_km*rate_per_km
+					distance_rate=dict1[large_km]+extra_charge
+					return distance_rate
 		if(vender_type=="Harvester"):
 			doc=frappe.db.get_list("Harvester Rate Chart",
 													filters={"season" : self.season ,"branch" : self.branch, "vehicle_type":vehicle_type},
 												fields=["name","per_km_rate"])
-			rate_per_km=doc[0].get("per_km_rate")
+			for i in doc:
+				rate_per_km=i.get("per_km_rate")
 			return rate_per_km
 
 		
@@ -622,7 +624,14 @@ class HandTBilling(Document):
 		self.update_value_in_farmer_loan()
 		self.set_date_in_farmer_loan_child_for_next_installment()
 		self.update_value_in_deduction_form()
-
+		self.delete_row_record()
+  
+	def delete_row_record(self):
+		doc = frappe.get_all("Child H and T Data",filters ={"parent": self.name , "check" : 0},)
+		for d in doc:
+			frappe.delete_doc("Child H and T Data", d.name)
+		self.reload_doc()
+      
 	def change_status_on_cane_weight(self):
 		doc = frappe.db.get_list("Cane Weight",
                                                 filters={"date": ["between", [self.from_date, self.to_date]],"season" : self.season ,"branch" : self.branch,"h_and_t_billing_status":False },

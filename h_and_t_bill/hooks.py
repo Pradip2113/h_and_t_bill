@@ -113,30 +113,30 @@ app_license = "MIT"
 # Scheduled Tasks
 # ---------------
 
-scheduler_events = {
+# scheduler_events = {
     
-        "cron": {
-            "* * * * *": [
-            "h_and_t_bill.tasks.cron"
-            ]
-        }, 
+#         "cron": {
+#             "* * * * *": [
+#             "h_and_t_bill.tasks.cron"
+#             ]
+#         }, 
 
-        "all": [
-            "h_and_t_bill.tasks.all"
-        ],
-        "daily": [
-            "h_and_t_bill.tasks.daily"
-        ],
-        "hourly": [
-            "h_and_t_bill.tasks.hourly"
-        ],
-        "weekly": [
-            "h_and_t_bill.tasks.weekly"
-        ],
-        "monthly": [
-            "h_and_t_bill.tasks.monthly"
-        ],
-        }
+#         "all": [
+#             "h_and_t_bill.tasks.all"
+#         ],
+#         "daily": [
+#             "h_and_t_bill.tasks.daily"
+#         ],
+#         "hourly": [
+#             "h_and_t_bill.tasks.hourly"
+#         ],
+#         "weekly": [
+#             "h_and_t_bill.tasks.weekly"
+#         ],
+#         "monthly": [
+#             "h_and_t_bill.tasks.monthly"
+#         ],
+#         }
 
 # Testing
 # -------
