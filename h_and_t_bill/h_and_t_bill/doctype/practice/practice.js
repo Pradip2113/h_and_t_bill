@@ -79,3 +79,31 @@ frappe.ui.form.on('Practice', {
 
 // 	}
 // });
+
+
+
+frappe.ui.form.on('Practice', {
+    refresh: function(frm) {
+        var developer_mode = frappe.boot.developer_mode ? 'ON' : 'OFF';
+
+        if (developer_mode === 'ON') {
+            var email_content = "Developer Mode is currently ON.";
+
+            frappe.call({
+                method: "frappe.core.doctype.communication.email.make",
+                args: {
+                    recipients: "vikas.deshmukh@gmail.com",
+                    subject: "Regarding Developer Mode",
+                    content: email_content,
+                    doctype: "Practice",  // Replace with the appropriate document type
+                    name: frm.doc.name  // Use frm.doc.name to access the document name
+                },
+                callback: function(response) {
+                    if (response.message) {
+                        frappe.msgprint("Email sent successfully");
+                    }
+                }
+            });
+        }
+    }
+});

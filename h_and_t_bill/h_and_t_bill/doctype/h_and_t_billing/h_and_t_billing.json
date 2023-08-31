@@ -50,7 +50,8 @@
   "column_break_6zxew",
   "net_total_payable_amountrs",
   "amended_from",
-  "today"
+  "today",
+  "journal_entry_id"
  ],
  "fields": [
   {
@@ -260,14 +261,21 @@
   {
    "fieldname": "today",
    "fieldtype": "Date",
+   "hidden": 1,
    "label": "Today Date",
    "read_only": 1
+  },
+  {
+   "fieldname": "journal_entry_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Journal Entry Id"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-11 15:12:18.145541",
+ "modified": "2023-08-31 16:10:12.154709",
  "modified_by": "Administrator",
  "module": "H And T Bill",
  "name": "H and T Billing",

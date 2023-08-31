@@ -69,9 +69,9 @@ class HandTBilling(Document):
 							"type":"Harvester",
 							"contract_id":d.contract_id,
 							"distance":d.distance,
-							"distance_amt":round(float(self.get_rate(d.distance,str(d.vehicle_type),"Harvester")),2),
+							"distance_amt":round(float(self.get_rate(d.distance,str(d.vehicle_type),"Harvester")),2) if (self.get_rate(d.distance,str(d.vehicle_type),"Harvester")) else frappe.throw(f"Please create the rate chart for vehicle type '{d.vehicle_type}' in Harvester "),
 							"weight":round((d.actual_weight),3),
-							"total":round((float(d.actual_weight)*float(self.get_rate(d.distance,str(d.vehicle_type),"Harvester"))),2),
+							"total":round((float(d.actual_weight)*float(self.get_rate(d.distance,str(d.vehicle_type),"Harvester"))),2) if (self.get_rate(d.distance,str(d.vehicle_type),"Harvester")) else frappe.throw(f"Please create the rate chart for vehicle type  '{d.vehicle_type}' in Harvester"),
 							"vehicle_type":d.vehicle_type
 						}
 					)
@@ -84,9 +84,9 @@ class HandTBilling(Document):
 							"type":"Transporter",
 							"contract_id":d.contract_id,
 							"distance":d.distance,
-							"distance_amt":round((float(self.get_rate(d.distance,str(d.vehicle_type),"Transporter"))),2),
+							"distance_amt":round((float(self.get_rate(d.distance,str(d.vehicle_type),"Transporter"))),2) if (self.get_rate(d.distance,str(d.vehicle_type),"Transporter")) else frappe.throw(f"Please create the rate chart for vehicle type  '{d.vehicle_type}' in Transporter"),
 							"weight":round((d.actual_weight),3),
-							'total':round(d.actual_weight*float(self.get_rate(d.distance,str(d.vehicle_type),"Transporter")),2),
+							'total':round(d.actual_weight*float(self.get_rate(d.distance,str(d.vehicle_type),"Transporter")),2) if (self.get_rate(d.distance,str(d.vehicle_type),"Transporter")) else frappe.throw(f"Please create the rate chart for vehicle type  '{d.vehicle_type}' in Transporter "),
 							"vehicle_type":d.vehicle_type
 						}
 					)
@@ -145,7 +145,7 @@ class HandTBilling(Document):
 					sales_invoices=[{"Sales invoice ID": d_d.name,"Outstanding Amount": d_d.outstanding_amount,"Account": d_d.debit_to,"Contract Id":d_d.h_and_t_contract}for d_d in deduction_doc]  # in this list all sales invoice will recored with there accound and outstanding_amount info
 					sales_invoice_deduction_amt= sum(float(d["Outstanding Amount"]) for d in sales_invoices)  # calculating sum of all sales invoice			
 				other_deductions = frappe.get_all("Deduction Form",
-																		filters={"h_and_t_contract_id":data_calculation_dict[d]["contract_id"],"docstatus":1, "season" : self.season , "deduction_status" : 0},
+																		filters={"h_and_t_contract_id":data_calculation_dict[d]["contract_id"],"docstatus":1, "season" : self.season , "deduction_status" : 0,"branch" : self.branch },
 																		fields=["farmer_code", "account", "name", "deduction_amount","paid_amount" ,"h_and_t_contract_id", "farmer_application_loan_id","interest_calculate_on_amount", "rate_of_interest" , "from_date_interest_calculation","interest_account" ,"update_from_date_interest_calculation",],)
 				if self.other_deduction:
 					other_deduction_dict=[{"Farmer Code": o_d.farmer_code,"Deduction Amount": round((float(o_d.deduction_amount) - float(o_d.paid_amount)),2),"Account": o_d.account,"DFN": o_d.name,"Contract Id":o_d.h_and_t_contract_id}for o_d in other_deductions if not o_d.farmer_application_loan_id ]
@@ -175,7 +175,7 @@ class HandTBilling(Document):
 													"Installment Interest Amount": round(float(o_i.interest_calculate_on_amount)*(float(o_i.rate_of_interest) / 100)*((datetime.strptime(self.to_date, "%Y-%m-%d")- datetime.strptime((str(o_i.from_date_interest_calculation)),"%Y-%m-%d",)).days/ 365),2,),
 													"Contract Id":o_i.h_and_t_contract_id
 												}
-												for o_i in other_deductions if o_i.farmer_application_loan_id and o_i.from_date_interest_calculation and (round((float(o_i.deduction_amount) - float(o_i.paid_amount)),2)) != 0 ]
+												for o_i in other_deductions if o_i.farmer_application_loan_id and o_i.from_date_interest_calculation and (round((float(o_i.deduction_amount) - float(o_i.paid_amount)),2)) != 0]
 					loan_interest_amt = sum(float(m["Installment Interest Amount"]) for m in loan_installment_intrest)
 				total_deduction = (sales_invoice_deduction_amt+ loan_installment_amt+ loan_interest_amt+other_deductions_amt)
 				total_amt=data_calculation_dict[d]["total"]
@@ -289,24 +289,7 @@ class HandTBilling(Document):
 						}
 			)
 		self.total_values()
-		# for s in self.get("calculation_table"):
-		# 		list_data_lo =[]
-		# 		formatted_input = re.sub(r'\]\[', '],[', s.all_deduction_information)
-		# 		formatted_input = '[' + formatted_input + ']'
-		# 		parsed_list = ast.literal_eval(formatted_input)
-		# 		list_data_lo=eval(str(parsed_list[1]))
-		# 		frappe.msgprint(str(list_data_lo))
-		# for s in self.get("calculation_table"):
-		# 			list_data_lo =[]
-		# 			formatted_input = re.sub(r'\]\[', '],[', s.all_deduction_information)
-		# 			formatted_input = '[' + formatted_input + ']'
-		# 			parsed_list = ast.literal_eval(formatted_input)
-		# 			list_data_lo =parsed_list
-		# 			if(list_data_lo):
-		# 				frappe.msgprint(str(list_data_lo[0]))
-		# 			else:
-		# 				pass
-					
+	
 					
 	#To get Net Deduction and collection
 	def total_values(self):
@@ -353,6 +336,7 @@ class HandTBilling(Document):
 					distance_rate=dict1[large_km]+extra_charge
 					return distance_rate
 		if(vender_type=="Harvester"):
+			rate_per_km=0
 			doc=frappe.db.get_list("Harvester Rate Chart",
 													filters={"season" : self.season ,"branch" : self.branch, "vehicle_type":vehicle_type},
 												fields=["name","per_km_rate"])
@@ -374,10 +358,11 @@ class HandTBilling(Document):
 		self.update_value_in_deduction_form_on_cancel()
 
 	def cancel_journal_entry(self):
-		doc = frappe.get_doc("Journal Entry",(str(self.journal_entry_id)))
-		if doc.docstatus == 1:
-			doc.cancel()
-	
+		if(self.journal_entry_id):
+			doc = frappe.get_doc("Journal Entry",(str(self.journal_entry_id)))
+			if doc.docstatus == 1:
+				doc.cancel()
+		
 	def bill_status_change_of_cane_weight_on_trash(self):
 		doc = frappe.db.get_list("Cane Weight",
 												filters={"date": ["between", [self.from_date, self.to_date]],"season" : self.season ,"branch" : self.branch,"h_and_t_billing_status":True},
@@ -630,7 +615,7 @@ class HandTBilling(Document):
 		doc = frappe.get_all("Child H and T Data",filters ={"parent": self.name , "check" : 0},)
 		for d in doc:
 			frappe.delete_doc("Child H and T Data", d.name)
-		self.reload_doc()
+	
       
 	def change_status_on_cane_weight(self):
 		doc = frappe.db.get_list("Cane Weight",
