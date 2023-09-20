@@ -15,7 +15,9 @@
   "distance_amt",
   "weight",
   "total",
-  "vehicle_type"
+  "vehicle_type",
+  "cartno",
+  "other_id"
  ],
  "fields": [
   {
@@ -72,12 +74,22 @@
    "fieldtype": "Data",
    "in_standard_filter": 1,
    "label": "Vehicle Type"
+  },
+  {
+   "fieldname": "cartno",
+   "fieldtype": "Float",
+   "label": "cart no"
+  },
+  {
+   "fieldname": "other_id",
+   "fieldtype": "Data",
+   "label": "Partner Id"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-08-10 13:04:07.495338",
+ "modified": "2023-09-17 13:10:03.495300",
  "modified_by": "Administrator",
  "module": "H And T Bill",
  "name": "Child H and T invisible",

@@ -10,6 +10,8 @@ frappe.ui.form.on('H and T Billing', {
 	show_list: function(frm) {
 		frm.clear_table("h_and_t_table")
 		frm.refresh_field('h_and_t_table')
+		frm.clear_table("calculation_table")
+		frm.refresh_field('calculation_table')
 		frm.call({
 			method:'get_data',//function name defined in python
 			doc: frm.doc, //current document
@@ -46,3 +48,13 @@ frappe.ui.form.on('H and T Billing', {
         $('.layout-main-section-wrapper').css('margin-left', '0');
     }
 });
+
+// frappe.ui.form.on('H and T Billing', {
+// 	data: function(frm) {
+// 		frm.call({
+// 			method:'delete_issue_date',//function name defined in python
+// 			doc: frm.doc, //current document
+// 		});
+
+// 	}
+// });

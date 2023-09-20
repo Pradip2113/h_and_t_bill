@@ -18,10 +18,14 @@
   "column_break_plthx",
   "state",
   "column_break_9rf55",
-  "other_deduction",
+  "include_security_deposite",
+  "include_tds",
+  "include_hire_charges",
+  "include_penalty_charges",
   "includes_sales_invoice_deduction",
   "includes_loan_installment",
   "includes_loan_interest",
+  "other_deduction",
   "section_break_apo7m",
   "show_list",
   "column_break_4qpbs",
@@ -49,9 +53,26 @@
   "net_total_deductionrs",
   "column_break_6zxew",
   "net_total_payable_amountrs",
+  "harvester_total_section",
+  "net_total_weight_har",
+  "column_break_yzblj",
+  "net_total_coll_har",
+  "column_break_uonxv",
+  "net_total_ded_har",
+  "column_break_2hp2t",
+  "net_total_pay_har",
+  "section_break_laear",
+  "net_total_wight_bul",
+  "column_break_ulodu",
+  "net_total_collection_bul",
+  "column_break_udi6k",
+  "net_total_ded_bul",
+  "column_break_pock0",
+  "net_total_pay_bul",
   "amended_from",
   "today",
-  "journal_entry_id"
+  "journal_entry_id",
+  "other_deduction_id"
  ],
  "fields": [
   {
@@ -128,12 +149,12 @@
   },
   {
    "fieldname": "section_break_lgqma",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "H & T Table"
   },
   {
    "fieldname": "h_and_t_table",
    "fieldtype": "Table",
-   "label": "H & T Table",
    "options": "Child H and T Data"
   },
   {
@@ -157,12 +178,12 @@
   },
   {
    "fieldname": "section_break_4vr7z",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Calculation Table"
   },
   {
    "fieldname": "calculation_table",
    "fieldtype": "Table",
-   "label": "Calculation Table",
    "options": "Child H and T Calculation"
   },
   {
@@ -224,7 +245,8 @@
   },
   {
    "fieldname": "section_break_m3fha",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Transporter Total"
   },
   {
    "fieldname": "new_total_weight",
@@ -270,12 +292,116 @@
    "fieldtype": "Data",
    "hidden": 1,
    "label": "Journal Entry Id"
+  },
+  {
+   "fieldname": "harvester_total_section",
+   "fieldtype": "Section Break",
+   "label": "Harvester Total"
+  },
+  {
+   "fieldname": "net_total_weight_har",
+   "fieldtype": "Float",
+   "label": "Net Total Weight"
+  },
+  {
+   "fieldname": "column_break_yzblj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_total_coll_har",
+   "fieldtype": "Currency",
+   "label": "Net Total Collection Amount(Rs)"
+  },
+  {
+   "fieldname": "column_break_uonxv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_total_ded_har",
+   "fieldtype": "Currency",
+   "label": "Net Total Deduction(Rs)"
+  },
+  {
+   "fieldname": "column_break_2hp2t",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_total_pay_har",
+   "fieldtype": "Currency",
+   "label": "Net Total Payable Amount(Rs)"
+  },
+  {
+   "fieldname": "section_break_laear",
+   "fieldtype": "Section Break",
+   "label": "Bullock Cart Total"
+  },
+  {
+   "fieldname": "net_total_wight_bul",
+   "fieldtype": "Float",
+   "label": "Net Total Weight"
+  },
+  {
+   "fieldname": "column_break_ulodu",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_total_collection_bul",
+   "fieldtype": "Currency",
+   "label": "Net Total Collection Amount(Rs)"
+  },
+  {
+   "fieldname": "column_break_udi6k",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_total_ded_bul",
+   "fieldtype": "Currency",
+   "label": "Net Total Deduction(Rs)"
+  },
+  {
+   "fieldname": "column_break_pock0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "net_total_pay_bul",
+   "fieldtype": "Currency",
+   "label": "Net Total Payable Amount(Rs)"
+  },
+  {
+   "default": "1",
+   "fieldname": "include_tds",
+   "fieldtype": "Check",
+   "label": "Include TDS Deduction"
+  },
+  {
+   "default": "1",
+   "fieldname": "include_security_deposite",
+   "fieldtype": "Check",
+   "label": "Include Security Deposit"
+  },
+  {
+   "fieldname": "other_deduction_id",
+   "fieldtype": "Text",
+   "hidden": 1,
+   "label": "Other Deduction Id"
+  },
+  {
+   "default": "1",
+   "fieldname": "include_hire_charges",
+   "fieldtype": "Check",
+   "label": "Include Hire Charges"
+  },
+  {
+   "default": "1",
+   "fieldname": "include_penalty_charges",
+   "fieldtype": "Check",
+   "label": "Include Penalty Charges"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-31 16:10:12.154709",
+ "modified": "2023-09-16 11:59:21.484947",
  "modified_by": "Administrator",
  "module": "H And T Bill",
  "name": "H and T Billing",

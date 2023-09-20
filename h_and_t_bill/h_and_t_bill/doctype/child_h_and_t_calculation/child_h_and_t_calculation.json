@@ -8,20 +8,41 @@
  "engine": "InnoDB",
  "field_order": [
   "contract_id",
-  "vender_id",
-  "vender_name",
-  "type",
   "total_weight",
+  "column_break_nrtop",
+  "vender_id",
+  "type",
+  "column_break_5s9dv",
+  "vender_name",
+  "vehicle_type",
+  "total_amount_section",
   "total",
   "deduction",
+  "column_break_avcit",
   "payable_amt",
-  "total_transporter_deduction",
+  "all_type_deductions_section",
+  "tds_deduction",
+  "hire_charge",
   "sales_invoice_deduction",
-  "other_deductions",
   "lone_deduction",
+  "column_break_t1tdm",
+  "sd_deduction",
+  "penalty_charge",
   "loan_interest_deduction",
+  "other_deductions",
+  "section_break_ay9rd",
   "all_deduction_information",
-  "payment_status"
+  "payment_status",
+  "cart_no_list",
+  "column_break_broji",
+  "cartno",
+  "remaining_hire_charge",
+  "hire_account",
+  "deduction_doc",
+  "transporter",
+  "other_collection",
+  "other_deduction",
+  "partner_id"
  ],
  "fields": [
   {
@@ -53,7 +74,7 @@
    "fieldname": "total",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Total Amt"
+   "label": "Total Collection Amt"
   },
   {
    "fieldname": "deduction",
@@ -65,7 +86,7 @@
    "fieldname": "payable_amt",
    "fieldtype": "Currency",
    "in_list_view": 1,
-   "label": "Payable Amt"
+   "label": "Total Payable Amt"
   },
   {
    "fieldname": "total_weight",
@@ -94,12 +115,6 @@
    "label": "Loan Interest Deduction"
   },
   {
-   "default": "0",
-   "fieldname": "total_transporter_deduction",
-   "fieldtype": "Currency",
-   "label": "Total Transporter Deduction"
-  },
-  {
    "fieldname": "all_deduction_information",
    "fieldtype": "Small Text",
    "label": "All Deduction Information"
@@ -111,12 +126,116 @@
    "in_list_view": 1,
    "label": "Payment Status",
    "read_only": 1
+  },
+  {
+   "fieldname": "vehicle_type",
+   "fieldtype": "Data",
+   "label": "Vehicle Type"
+  },
+  {
+   "fieldname": "tds_deduction",
+   "fieldtype": "Currency",
+   "label": "TDS Deduction"
+  },
+  {
+   "fieldname": "sd_deduction",
+   "fieldtype": "Currency",
+   "label": "SD Deduction"
+  },
+  {
+   "fieldname": "column_break_nrtop",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_5s9dv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount_section",
+   "fieldtype": "Section Break",
+   "label": "Total Amounts"
+  },
+  {
+   "fieldname": "column_break_avcit",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "all_type_deductions_section",
+   "fieldtype": "Section Break",
+   "label": "Deduction Amounts"
+  },
+  {
+   "fieldname": "column_break_t1tdm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_ay9rd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "cartno",
+   "fieldtype": "Int",
+   "label": "Cart No"
+  },
+  {
+   "fieldname": "column_break_broji",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hire_charge",
+   "fieldtype": "Currency",
+   "label": "Hire Charge Deduction"
+  },
+  {
+   "fieldname": "remaining_hire_charge",
+   "fieldtype": "Float",
+   "label": "Remaining Hire Charge"
+  },
+  {
+   "fieldname": "hire_account",
+   "fieldtype": "Data",
+   "label": "Hire Account"
+  },
+  {
+   "fieldname": "deduction_doc",
+   "fieldtype": "Data",
+   "label": "Hire Deduction Doc"
+  },
+  {
+   "fieldname": "cart_no_list",
+   "fieldtype": "Data",
+   "label": "Cart No List"
+  },
+  {
+   "fieldname": "transporter",
+   "fieldtype": "Data",
+   "label": "Transporter"
+  },
+  {
+   "fieldname": "penalty_charge",
+   "fieldtype": "Currency",
+   "label": "Penalty Deduction"
+  },
+  {
+   "fieldname": "other_collection",
+   "fieldtype": "Data",
+   "label": "Other Collection"
+  },
+  {
+   "fieldname": "other_deduction",
+   "fieldtype": "Data",
+   "label": "Other Deduction"
+  },
+  {
+   "fieldname": "partner_id",
+   "fieldtype": "Data",
+   "label": "Partner Id"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2023-08-16 14:22:59.838564",
+ "modified": "2023-09-20 18:55:32.808513",
  "modified_by": "Administrator",
  "module": "H And T Bill",
  "name": "Child H and T Calculation",

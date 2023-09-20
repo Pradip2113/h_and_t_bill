@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:{season}-{vender_type}-{vehicle_type}",
  "creation": "2023-07-28 11:14:25.996546",
@@ -81,7 +82,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-08-04 11:03:36.099656",
+ "modified": "2023-09-01 11:02:04.651925",
  "modified_by": "Administrator",
  "module": "H And T Bill",
  "name": "Transporter Rate Chart",

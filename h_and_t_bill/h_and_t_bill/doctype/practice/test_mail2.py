@@ -2,37 +2,80 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-# Email configuration
+import json
+import schedule
+import time
+
+
+def get_site_name():
+  with open('/home/erpadmin/bench05-dev-vppl/sites/deverpvppl.erpdata.in/site_config.json', 'r') as config_file:
+    config = json.load(config_file)
+    site_name = config.get('site_name', 'deverpvppl.erpdata.in')
+    return site_name
+print(get_site_name())
+
+
 sender_email = 'vikas.derpdata@gmail.com'
 receiver_email = 'vikas.derpdata@gmail.com'
-subject = 'Developer mode turned off'
-message = 'The developer mode on your ERPNext site has been turned off.'
+subject = 'Important Notification: Developer Mode Status'
+try:
+    with open('/home/erpadmin/bench05-dev-vppl/sites/deverpvppl.erpdata.in/site_config.json', 'r') as config_file:  
+        config = json.load(config_file)
+        developer_mode = config.get('developer_mode', 0)
+        if developer_mode:
+            html = """\
+                    <html>
+                    <head></head>
+                    <body>
+                     <p style='font-size:16px;'>
+                        Site Name - """+ get_site_name() + """ .
+                        </p>
+                        <p style='font-size:16px;'>
+                        Developer Mode Status - <b>ON</b>.
+                        </p>
+                    </body>
+                    </html>
+                    """
+             
+        else:
+            html = """\
+                    <html>
+                    <head></head>
+                    <body>
+                     <p style='font-size:16px;'>
+                        Site Name - """+ get_site_name() + """ .
+                        </p>
+                        <p style='font-size:16px;'>
+                        Developer Mode Status - <b>OFF</b>.
+                        </p>
+                    </body>
+                    </html>
+                    """
+except FileNotFoundError:
+    frappe.msgprint("File not found: site_config.json")
 
-# Create the email
 msg = MIMEMultipart()
 msg['From'] = sender_email
 msg['To'] = receiver_email
 msg['Subject'] = subject
-msg.attach(MIMEText(message, 'plain'))
+# msg.attach(MIMEText(message, 'plain'))
+msg.attach(MIMEText(html, 'html'))
 
-# SMTP server configuration
 smtp_server = 'smtp.gmail.com'
-smtp_port = 587  # Use 465 for SSL or 587 for TLS
-smtp_username = 'vikas.derpdata@gmail.com'
-smtp_password = 'dhnycuexqizsawip'
+smtp_port = 587  
 
-# Connect to the SMTP server
+username = 'vikas.derpdata@gmail.com'
+password = 'dhnycuexqizsawip'
+
 server = smtplib.SMTP(smtp_server, smtp_port)
-server.starttls()  # For TLS encryption
-# server = smtplib.SMTP_SSL(smtp_server, smtp_port)  # For SSL encryption
-
-# Log in to the server
-server.login(smtp_username, smtp_password)
-
-# Send the email
+server.starttls()  
+server.login(username, password)
 server.sendmail(sender_email, receiver_email, msg.as_string())
-
-# Quit the server
 server.quit()
 
+schedule.every(1).seconds.do(sendmail) 
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+    
 print("Email sent successfully!")

@@ -1,23 +1,32 @@
 # Copyright (c) 2023, Abhishek and contributors
-# For license information, please see license.txt
 import frappe
 from frappe.model.document import Document
-import json
-from frappe import _
+from frappe.utils.background_jobs import enqueue
 
 
+# class Practice(Document):
+#     @frappe.whitelist()
+#     def get_data(self):
+#         # create a new document
+#         doc = frappe.new_doc('Test-2')
+#         doc.full_name = self.name
+#         doc.insert()
 
-class Practice(Document):
-  @frappe.whitelist()
-  def before_submit(self):
-      doc = frappe.get_all("Child Test",filters ={"parent": self.name , "check" : 0},)
-      for d in doc:
-        frappe.delete_doc("Child Test", d.name)
-      self.reload_doc()
-      
-  
-  
-  
+#     def on_trash(self):
+#         frappe.msgprint("hi")
+#         frappe.db.rollback()
+
+# # Create an instance of your class
+# my_instance = Practice()
+
+# # Define a function that wraps the instance method
+# def enqueue_get_data():
+#     my_instance.get_data()
+
+# # Enqueue the function with the specified delay
+# enqueue(enqueue_get_data, queue='short', enqueue_after=5)
+
+
   
   
   

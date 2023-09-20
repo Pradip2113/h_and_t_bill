@@ -97,38 +97,38 @@
 
 #     send_email(site_url, email_to, email_subject, email_body)
 
-import smtplib
-from email.message import EmailMessage
+# import smtplib
+# from email.message import EmailMessage
 
-def send_email(email_to, email_subject, email_body):
-  """Sends an email notification when developer mode is turned off on an ERPNext site.
+# def send_email(email_to, email_subject, email_body):
+#   """Sends an email notification when developer mode is turned off on an ERPNext site.
 
-  Args:
-    email_to: The email address to send the notification to.
-    email_subject: The subject of the email notification.
-    email_body: The body of the email notification.
-  """
+#   Args:
+#     email_to: The email address to send the notification to.
+#     email_subject: The subject of the email notification.
+#     email_body: The body of the email notification.
+#   """
 
-  message = EmailMessage()
-  message["From"] ="noreply@gmail.com"
-  message["To"] = email_to
-  message["Subject"] = email_subject
-  message["Body"] = email_body
+#   message = EmailMessage()
+#   message["From"] ="noreply@gmail.com"
+#   message["To"] = email_to
+#   message["Subject"] = email_subject
+#   message["Body"] = email_body
 
-  smtp_server = "smtp.gmail.com"
-  smtp_port = 587
-  smtp_username = "vikas.derpdata@gmail.com"
-  smtp_password = "dhnycuexqizsawip"
+#   smtp_server = "smtp.gmail.com"
+#   smtp_port = 587
+#   smtp_username = "vikas.derpdata@gmail.com"
+#   smtp_password = "dhnycuexqizsawip"
 
-  with smtplib.SMTP(smtp_server, smtp_port) as smtp:
-    smtp.ehlo()
-    smtp.starttls()
-    smtp.login(smtp_username, smtp_password)
-    smtp.send_message(message)
+#   with smtplib.SMTP(smtp_server, smtp_port) as smtp:
+#     smtp.ehlo()
+#     smtp.starttls()
+#     smtp.login(smtp_username, smtp_password)
+#     smtp.send_message(message)
 
-if __name__ == "__main__":
-  email_to = "vikas.derpdata@gmail.com"
-  email_subject = "Developer mode turned off"
-  email_body = "The developer mode on your ERPNext site has been turned off.".encode()
+# if __name__ == "__main__":
+#   email_to = "vikas.derpdata@gmail.com"
+#   email_subject = "Developer mode turned off"
+#   email_body = "The developer mode on your ERPNext site has been turned off.".encode()
 
-  send_email(email_to, email_subject, email_body)
+#   send_email(email_to, email_subject, email_body)
