@@ -16,6 +16,7 @@
   "per_km_rate",
   "column_break_5fj0z",
   "vender_type",
+  "get_rate_chart",
   "section_break_wfxv6",
   "rate_chart",
   "amended_from"
@@ -77,12 +78,17 @@
    "options": "Transporter Rate Chart",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "get_rate_chart",
+   "fieldtype": "Attach",
+   "label": "Get Rate Chart"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-01 11:02:04.651925",
+ "modified": "2023-09-21 13:25:36.524311",
  "modified_by": "Administrator",
  "module": "H And T Bill",
  "name": "Transporter Rate Chart",

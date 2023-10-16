@@ -173,6 +173,7 @@
   {
    "fieldname": "child_h_and_t_invisible",
    "fieldtype": "Table",
+   "hidden": 1,
    "label": "Child H and T invisible",
    "options": "Child H and T invisible"
   },
@@ -401,7 +402,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-09-16 11:59:21.484947",
+ "modified": "2023-10-02 12:33:03.382489",
  "modified_by": "Administrator",
  "module": "H And T Bill",
  "name": "H and T Billing",

@@ -6,3 +6,12 @@ frappe.ui.form.on('Transporter Rate Chart', {
 
 	// }
 });
+// frappe.ui.form.on('Transporter Rate Chart', {
+// 	get_rate_chart: function(frm) {
+// 		frm.call({
+// 			method:'get_rate_chart',//function name defined in python
+// 			doc: frm.doc, //current document
+// 		});
+
+// 	}
+// });

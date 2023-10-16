@@ -20,7 +20,7 @@ frappe.ui.form.on('H and T Billing', {
 	}
 });
 frappe.ui.form.on('H and T Billing', {
-	select_all: function(frm) {
+	set_item: function(frm) {
 		frm.call({
 			method:'selectall',//function name defined in python
 			doc: frm.doc, //current document
